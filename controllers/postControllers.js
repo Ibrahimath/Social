@@ -1,9 +1,11 @@
 const { v4: uuidv4 } = require('uuid');
-
+const postModel = require('../models/postModel')
+const userModel = require('../models/userModel')
 const createPost = async(req, res) => {
      try{   
     const {user_id, post} = req.body
-    if (!post || post.length < 30 ) {
+    console.log(user_id, post)
+    if (!post ) {
         throw new Error('Invalid post')
 }
     const findUser = await userModel.findAll({
@@ -16,7 +18,8 @@ const createPost = async(req, res) => {
     throw new Error('User not found')
    }   
    
-   await userModel.create({
+   await postModel.create({
+         id: uuidv4(),
         post_id: uuidv4(),
         user_id:user_id,
         post: post,
@@ -28,7 +31,11 @@ const createPost = async(req, res) => {
         message: "post created successfully"
     })
 }catch (e) {
-    console.log("error creating post");
+    res.status(400).json({
+        status: true,
+        message: e.message
+
+        });
 }
     }
 
