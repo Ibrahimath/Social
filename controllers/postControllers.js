@@ -33,7 +33,7 @@ const createPost = async(req, res) => {
     })
 }catch (e) {
     res.status(400).json({
-        status: true,
+        status: false,
         message: e.message
 
         });
@@ -57,7 +57,7 @@ try{
 
    const findPost = await postModel.findAll({
             where: {
-                post_id
+                [Op.and]: [{ user_id }, { post_id }]
             }
 
         })

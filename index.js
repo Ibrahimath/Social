@@ -7,13 +7,15 @@ const displayRoutes = require('express-routemap');
 const sequelize = require('./config/db')
 const userRoutes = require('./routes/userRoutes')
 const postRoutes = require('./routes/postRoutes')
+const commentRoutes = require('./routes/commentRoutes')
 const adminRoutes = require('./routes/adminRoutes')
 app.use(bodyParser.json())
 
 
 
 app.use('/social/v1/user', userRoutes)
-app.use('/social/v1/post', postRoutes)
+app.use('/social/v1/user/post', postRoutes)
+app.use('/social/v1/user/comment', commentRoutes)
 //app.use('/social/v1/admin', adminRoutes)
 
 sequelize.authenticate()

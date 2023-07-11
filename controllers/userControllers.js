@@ -96,6 +96,26 @@ const getUserDetails = async(req, res) =>{
 }catch(e){console.log("AAAAAAAAA", e);}
 }
 
+const updateUser = async(req, res) => {
+    // validation
+try {
+const {user_id, email} = req.header;
+const findUser = await userModel.findAll({
+    where: {
+        [Op.and]: [{ user_id }, {email}]
+    }
+
+})
+if (findUser.length ===0){
+throw new Error('User not found')
+}
+
+
+}catch (e){}
+}
+
+
+
 const getAllUsers = async(req, res) =>{
     const findAllUsers = await userModel.findAll({
         attributes: ['surname','othernames','username','email', 'occupaton', 'about_me']});
