@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const {createPost} = require('../controllers/postControllers')
+const {createPost, deletePost} = require('../controllers/postControllers')
 
 router.post('/create', createPost)
-
+router.delete('/delete', deletePost)
 
 
 

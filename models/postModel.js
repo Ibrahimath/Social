@@ -3,7 +3,7 @@ const sequelize = require('../config/db')
 
 
 
-const post = sequelize.define("users", {  
+const post = sequelize.define("posts", {  
   id: {
     type: DataTypes.STRING(100),
     allowNull: false,
@@ -24,5 +24,5 @@ const post = sequelize.define("users", {
     allowNull: false,
    }
 })
-
+ post.sync()
 module.exports = post
